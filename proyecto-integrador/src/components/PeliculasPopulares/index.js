@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import CardPelicula from '../CardPelicula'
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import './styles.css'
 const APIKEY = '72c246bb35885b3ab17e1a50707d1bf1'
 
@@ -8,7 +9,8 @@ class PeliculasPopulares extends Component {
         super(props)
         this.state= {
             peliculasMasPopulares: [],
-            verTodoPopulares: false
+            verTodoPopulares: false,
+            cargando: true
         }
         console.log('Soy el constructor');
         
@@ -20,12 +22,20 @@ class PeliculasPopulares extends Component {
         .then((resp) => resp.json())
 
         .then((data) => {
-            this.setState({
-                peliculasMasPopulares: data.results
-            })  
+            setTimeout(() => {
+                this.setState({
+                    peliculasMasPopulares: data.results,
+                    cargando: false
+                })   
+            }, 2000); 
         })
 
-        .catch ((error)=> console.log(error)) 
+        .catch ((error)=> {
+            console.log(error);
+            this.setState({
+                cargando: false,
+            });
+        })
         
     }
 
@@ -48,12 +58,18 @@ class PeliculasPopulares extends Component {
     render(){
         return(
             <div className='cardContainer'>
-            {   this.state.peliculasMasPopulares && this.state.peliculasMasPopulares.length > 0
+                {this.state.cargando ? (
+                    <div>
+                        <i className="fa-solid fa-spinner fa-spin"></i>
+                        <h1 className="cargando">Cargando...</h1>
+                    </div>
+                ) : (
+              this.state.peliculasMasPopulares && this.state.peliculasMasPopulares.length > 0
                 ?
                 this.state.peliculasMasPopulares.slice(0,5).map((elm)=> <CardPelicula data={elm}/>)
                 :
-                null
-            }
+                <h1>Cargando...</h1>
+            )}
         </div>
         )
     }

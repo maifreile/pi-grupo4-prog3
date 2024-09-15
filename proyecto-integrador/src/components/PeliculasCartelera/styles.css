@@ -35,6 +35,21 @@ box-shadow: 0rem 0rem 10px 8px rgb(58 59 69 / 25%);
     margin: 2px 0;
 }
 
+.cargando{
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+   
+i.fa-spinner {
+    color: rgb(0, 0, 0); 
+    font-size: 1.5rem; 
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+   
+}
+     
 
 .more{
     background-color: #655c64; 
