@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import CardPelicula from '../CardPelicula'
 import './styles.css'
+import '@fortawesome/fontawesome-free/css/all.min.css';
 const APIKEY = '72c246bb35885b3ab17e1a50707d1bf1'
 
 class PeliculasCartelera extends Component {
@@ -8,6 +9,7 @@ class PeliculasCartelera extends Component {
         super(props)
         this.state= {
             peliculasEnCartelera: [],
+            cargando: true
             
         }
         console.log('Soy el constructor');
@@ -16,16 +18,23 @@ class PeliculasCartelera extends Component {
 
     componentDidMount(){
         fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${APIKEY}`)
-       
+        //?api_key=${APIKEY}
         .then((resp) => resp.json())
 
         .then((data) => {
-            this.setState({
-                peliculasEnCartelera: data.results
-              })  
+
+            setTimeout(()=> this.setState({
+                peliculasEnCartelera: data.results,
+                cargando: false,
+              })  , 2000)
         })
 
-        .catch ((error)=> console.log(error)) 
+        .catch ((error)=> {
+            console.log(error);
+            this.setState({
+                cargando: false,
+            });
+        })
         
     }
 
@@ -44,12 +53,18 @@ class PeliculasCartelera extends Component {
         return(
        
             <div className='cardContainer'>
-                {   this.state.peliculasEnCartelera && this.state.peliculasEnCartelera.length > 0
+                {this.state.cargando ? (
+                    <div>
+                        <i className="fa-solid fa-spinner fa-spin"></i>
+                        <h1 className="cargando">Cargando...</h1>
+                    </div>
+                ) : (
+                   this.state.peliculasEnCartelera && this.state.peliculasEnCartelera.length > 0
                     ?
                     this.state.peliculasEnCartelera.slice(0,5).map((elm)=> <CardPelicula data={elm}/>)
                     :
-                    null
-                }
+                    <h1>Cargando...</h1>
+                )}
             </div>
     
         )

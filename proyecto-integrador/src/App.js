@@ -6,6 +6,9 @@ import Home from './screens/Home'
 import DetallePelicula from './components/DetallePelicula'
 // import NotFound from './screens/NotFound'
 
+import PeliculasPopulares from './components/PeliculasPopulares'
+import PeliculasCartelera from './components/PeliculasCartelera'
+import NotFound from './screens/NotFound'
 
 function App(props) {
   return (
@@ -16,6 +19,9 @@ function App(props) {
       <Route path= '/detallePelicula/:id' exact={true} component={DetallePelicula} /> Que me lleve al detalle de la pelicula
       {/* <Route path="/detallePelicula/:id" component={DetallePeliculaWrapper} /> */}
       {/* <Route path= '' component={NotFound} /> */}
+      <Route path= '/populares'  component={PeliculasPopulares} />
+      <Route path= '/cartelera'  component={PeliculasCartelera} />
+      <Route path= '' component={NotFound} />
     </Switch>
     <Footer/>
     </>
