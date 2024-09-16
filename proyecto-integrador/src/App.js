@@ -1,10 +1,10 @@
-import {Switch, Route} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Home from './screens/Home'
-import PeliculasPopulares from './components/PeliculasPopulares'
-import PeliculasCartelera from './components/PeliculasCartelera'
+import DetallePelicula from './components/DetallePelicula'
+// import NotFound from './screens/NotFound'
 
 
 function App(props) {
@@ -13,9 +13,9 @@ function App(props) {
     <Header/>
     <Switch>
       <Route path= '/' exact={true} component={Home} />
-      <Route path= '/populares'  component={PeliculasPopulares} />
-      <Route path= '/cartelera'  component={PeliculasCartelera} />
-
+      <Route path= '/detallePelicula/:id' exact={true} component={DetallePelicula} /> Que me lleve al detalle de la pelicula
+      {/* <Route path="/detallePelicula/:id" component={DetallePeliculaWrapper} /> */}
+      {/* <Route path= '' component={NotFound} /> */}
     </Switch>
     <Footer/>
     </>

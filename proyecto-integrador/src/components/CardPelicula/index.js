@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import PeliculasCartelera from "../PeliculasCartelera";
+import { Link } from 'react-router-dom';
 
 class CardPelicula extends Component {
     constructor(props){
@@ -66,12 +67,13 @@ render() {
             null
         }
 
-       <div className="botones">
+<div className="botones">
        <button className='more' onClick={()=> this.cambiarverDescripcion()}>
             {this.state.textoDescripcion}</button>
         
-        <button className='detail' onClick={() => this.irADetalle()}> 
-            {this.state.textoDetalle}</button>
+            <Link to={`/detallePelicula/${this.props.data.id}`}>
+              <button className="detail">{this.state.textoDetalle}</button>
+            </Link>
         
         <i className={this.state.esFavorito ? "fas fa-heart" : "far fa-heart"} 
             onClick={() => this.cambiarEsFavorito(CardPelicula)} />
