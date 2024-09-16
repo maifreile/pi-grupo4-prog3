@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PeliculasCartelera from "../PeliculasCartelera";
 
-class CardPelicula extends Component {
+class PeliculaCartelera extends Component {
     constructor(props){
         super(props) 
         this.state = {
@@ -9,8 +9,7 @@ class CardPelicula extends Component {
             esFavorito: false,
             textoDescripcion:'Ver descripción',
             textoDetalle: 'Ir a detalle',
-            PeliculasEnCartelera: [],
-            PeliculasMasPopulares: []
+            PeliculasEnCartelera: []
         }
     }
 
@@ -55,7 +54,7 @@ render() {
     
     <div className='pelicula-card'>
 
-        <img src={`https://image.tmdb.org/t/p/w500${this.props.data.backdrop_path}`} alt="" /> 
+        <img src={`https://image.tmdb.org/t/p/w500${this.props.data.poster_path}`} alt="" /> 
         <h2>{this.props.data.title} </h2>
       
          {
@@ -73,8 +72,7 @@ render() {
         <button className='detail' onClick={() => this.irADetalle()}> 
             {this.state.textoDetalle}</button>
         
-        <i className={this.state.esFavorito ? "fas fa-heart" : "far fa-heart"} 
-            onClick={() => this.cambiarEsFavorito(CardPelicula)} />
+        <i className={this.state.esFavorito ? "fas fa-heart" : "far fa-heart"} onClick={() => this.cambiarEsFavorito(PeliculaCartelera)} />
        </div>
 
     </div>
@@ -85,4 +83,4 @@ render() {
 
 }
 
-export default CardPelicula
+export default PeliculaCartelera

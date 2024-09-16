@@ -4,13 +4,13 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import './styles.css'
 const APIKEY = '72c246bb35885b3ab17e1a50707d1bf1'
 
-class PeliculasPopulares extends Component {
+class TodasPopulares extends Component {
     constructor(props) {
         super(props)
         this.state= {
-            peliculasMasPopulares: [],
-            verTodoPopulares: false,
-            cargando: true
+            peliculas: [],
+            cargando: true,
+            peliculasVisibles:10
         }
         console.log('Soy el constructor');
         
@@ -24,7 +24,7 @@ class PeliculasPopulares extends Component {
         .then((data) => {
             setTimeout(() => {
                 this.setState({
-                    peliculasMasPopulares: data.results,
+                    peliculas: data.results,
                     cargando: false
                 })   
             }, 2000); 
@@ -49,24 +49,44 @@ class PeliculasPopulares extends Component {
         
     }
 
+    cambiarCargarMas = () => {
+        this.setState((prevState) => ({
+            peliculasVisibles: prevState.peliculasVisibles + 5
+        }));
+    };
+
     render(){
         return(
             <div className='cardContainer'>
-                {this.state.cargando ? (
+                {this.state.cargando 
+                ? 
                     <div>
                         <i className="fa-solid fa-spinner fa-spin"></i>
                         <h1 className="cargando">Cargando...</h1>
                     </div>
-                ) : (
-              this.state.peliculasMasPopulares.length > 0
-                ?
-                this.state.peliculasMasPopulares.slice(0,5).map((elm)=> <PeliculaPopular data={elm}/>)
-                :
+                : 
+              this.state.peliculas.length > 0 
+                ? 
+                   <div className='cardContainer'> 
+                    {
+                        this.state.peliculas.slice(0, this.state.peliculasVisibles).map((elm)=> <PeliculaPopular data={elm}/>)
+                    }
+                    {
+                        this.state.peliculasVisibles < 20
+                        ? 
+                        <button onClick={this.cambiarCargarMas}>Cargar más</button>
+                        : null
+                     }
+                   </div>
+                : 
                 <h1>Cargando...</h1>
-            )}
-        </div>
-        )
+                
+                }
+            </div>
+            )
+
+
     }
 }
 
-export default PeliculasPopulares
+export default TodasPopulares
