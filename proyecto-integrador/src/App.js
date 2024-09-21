@@ -3,7 +3,8 @@ import {Route, Switch} from 'react-router-dom'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Home from './screens/Home'
-
+import Favoritas from './screens/Favoritas'
+import Detalle from './screens/Detalle'
 import TodasPopulares from './components/TodasPopulares'
 import TodasCartelera from './components/TodasCartelera'
 
@@ -15,7 +16,8 @@ function App(props) {
     <Header/>
     <Switch>
       <Route path= '/' exact={true} component={Home} />
-
+      <Route path= '/detalle/:id' exact={true} component={Detalle} /> Que me lleve al detalle de la pelicula
+      <Route path='/favoritos' component={Favoritas} />
       <Route path= '/populares'  component={TodasPopulares} />
       <Route path= '/cartelera'  component={TodasCartelera} />
 
