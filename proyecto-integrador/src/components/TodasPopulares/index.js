@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import PeliculaPopular from "../PeliculaPopular";
+import Filtro from "../Filtro";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './styles.css'
 const APIKEY = '72c246bb35885b3ab17e1a50707d1bf1'
@@ -9,6 +10,7 @@ class TodasPopulares extends Component {
         super(props)
         this.state= {
             peliculas: [],
+            peliculasFiltradas: [],
             cargando: true,
             peliculasVisibles:10
         }
@@ -25,6 +27,7 @@ class TodasPopulares extends Component {
             setTimeout(() => {
                 this.setState({
                     peliculas: data.results,
+                    peliculasFiltradas: data.results, 
                     cargando: false
                 })   
             }, 2000); 
@@ -55,38 +58,41 @@ class TodasPopulares extends Component {
         }));
     };
 
-    render(){
-        return(
-            <div className='cardContainer'>
-                {this.state.cargando 
-                ? 
-                    <div>
-                        <i className="fa-solid fa-spinner fa-spin"></i>
-                        <h1 className="cargando">Cargando...</h1>
-                    </div>
-                : 
-              this.state.peliculas.length > 0 
-                ? 
-                   <div className='cardContainer'> 
-                    {
-                        this.state.peliculas.slice(0, this.state.peliculasVisibles).map((elm)=> <PeliculaPopular data={elm}/>)
-                    }
-                    {
-                        this.state.peliculasVisibles < 20
-                        ? 
-                        <button onClick={this.cambiarCargarMas}>Cargar más</button>
-                        : null
-                     }
-                   </div>
-                : 
-                <h1>Cargando...</h1>
-                
-                }
-            </div>
-            )
+    filtrarPeliculas = (peli) => {
+        const pelisFiltradas = this.state.peliculas.filter((elm) =>
+          elm.title.toLowerCase().includes(peli.toLowerCase())
+        );
+        this.setState({
+          peliculasFiltradas: pelisFiltradas, // Actualizas el estado de películas filtradas
+        });
+      };
 
-
-    }
+      render() {
+        return (
+          <div className="cardContainer">
+            <Filtro filtrarPeliculas={(peli) => this.filtrarPeliculas(peli)} />
+            {this.state.cargando ? (
+              <div>
+                <i className="fa-solid fa-spinner fa-spin"></i>
+                <h1 className="cargando">Cargando...</h1>
+              </div>
+            ) : this.state.peliculasFiltradas.length > 0 ? (
+              <div className="cardContainer">
+                {this.state.peliculasFiltradas
+                  .slice(0, this.state.peliculasVisibles)
+                  .map((elm) => (
+                    <PeliculaPopular data={elm} />
+                  ))}
+                {this.state.peliculasVisibles < this.state.peliculasFiltradas.length && (
+                  <button onClick={this.cambiarCargarMas}>Cargar más</button>
+                )}
+              </div>
+            ) : (
+              <h1>No se encontraron películas</h1>
+            )}
+          </div>
+        );
+      }
 }
 
 export default TodasPopulares
