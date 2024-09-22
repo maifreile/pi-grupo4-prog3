@@ -1,88 +1,91 @@
-import React, {Component} from "react";
-import PeliculasCartelera from "../PeliculasCartelera";
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom"; // Asegúrate de importar withRouter
 
 class PeliculaCartelera extends Component {
-    constructor(props){
-        super(props) 
-        this.state = {
-            verDescripcion: false,
-            esFavorito: false,
-            textoDescripcion:'Ver descripción',
-            textoDetalle: 'Ir a detalle',
-            PeliculasEnCartelera: []
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      verDescripcion: false,
+      esFavorito: false,
+      textoDescripcion: "Ver descripción",
+      textoDetalle: "Ir a detalle",
+    };
+  }
 
-        componentDidMount(){
-            
-        }
+  componentDidMount() {
+    // Verificamos si esta película ya está en favoritos cuando el componente carga
+    const favoritos = JSON.parse(localStorage.getItem("categoriaFavs")) || [];
+    const esFavorito = favoritos.includes(this.props.data.id);
+    this.setState({ esFavorito });
+  }
+
+  componentDidUpdate() {
+    console.log("soy el didUpdate");
+  }
+
+  componentWillUnmount() {
+    console.log("soy el willUnmount");
+  }
+
+  cambiarverDescripcion() {
+    this.setState({
+      verDescripcion: !this.state.verDescripcion,
+      textoDescripcion: this.state.verDescripcion
+        ? "Ver descripción"
+        : "Cerrar descripción",
+    });
+  }
+
+  cambiarEsFavorito() {
+    const { esFavorito } = this.state;
+    let favoritos = JSON.parse(localStorage.getItem("categoriaFavs")) || [];
+
+    favoritos = esFavorito 
+    ? favoritos.filter((id) => id !== this.props.data.id)
+    : [...favoritos, this.props.data.id];
     
-        componentDidUpdate(){
-            console.log('soy el didUpdate');
-        }
-    
-        componentWillUnmount(){
-            console.log('soy el willUnmount');
-        }
-    
+    // Guardamos los favoritos actualizados en localStorage
+    localStorage.setItem("categoriaFavs", JSON.stringify(favoritos));
 
-        cambiarverDescripcion(){
-            this.setState({
-                verDescripcion: !this.state.verDescripcion,
-                textoDescripcion: this.state.verDescripcion ? 'Ver descripción' : 'Cerrar descripción'
-            })
-        }
+   
+    this.setState({ esFavorito: !esFavorito });
+  }
 
-        cambiarEsFavorito(){
-            this.setState({
-                esFavorito: !this.state.esFavorito,
+  irADetalle() {
+    this.props.history.push(`/detalle/${this.props.data.id}`);
+  }
 
-            })
-            if (this.state.esFavorito) {
-                console.log(`Se agregó ${PeliculasCartelera.title} a favoritos`);
-                
-            } else {
-                console.log(`Se quitó ${PeliculasCartelera.title} de favoritos`);
-            }
-        }
+  render() {
+    const { esFavorito, verDescripcion, textoDescripcion, textoDetalle } = this.state;
+    const { data } = this.props;
 
-        
+    return (
+      <div className="pelicula-card">
+        <img
+          src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
+          alt={data.title}
+        />
+        <h2>{data.title}</h2>
 
-render() {
-    console.log('props', this.props)
-    return(
-    
-    <div className='pelicula-card'>
+        {verDescripcion ? <p>{data.overview}</p> : null}
 
-        <img src={`https://image.tmdb.org/t/p/w500${this.props.data.poster_path}`} alt="" /> 
-        <h2>{this.props.data.title} </h2>
-      
-         {
-            this.state.verDescripcion 
-            ?
-            <p >{this.props.data.overview}</p>
-            :
-            null
-        }
+        <div className="botones">
+          <button className="more" onClick={() => this.cambiarverDescripcion()}>
+            {textoDescripcion}
+          </button>
 
-<div className="botones">
-       <button className='more' onClick={()=> this.cambiarverDescripcion()}>
-            {this.state.textoDescripcion}</button>
-        
-            <Link to={`/detallePelicula/${this.props.data.id}`}>
-              <button className="detail">{this.state.textoDetalle}</button>
-            </Link>
-        
-        <i className={this.state.esFavorito ? "fas fa-heart" : "far fa-heart"} onClick={() => this.cambiarEsFavorito(PeliculaCartelera)} />
-       </div>
+          <button className="detail" onClick={() => this.irADetalle()}>
+            {textoDetalle}
+          </button>
 
-    </div>
-
-
-    )
+          <i
+            className={esFavorito ? "fas fa-heart" : "far fa-heart"}
+            onClick={() => this.cambiarEsFavorito()}
+          />
+        </div>
+      </div>
+    );
+  }
 }
 
-}
-
-export default PeliculaCartelera
+export default withRouter(PeliculaCartelera);

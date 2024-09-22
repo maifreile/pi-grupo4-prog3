@@ -14,7 +14,21 @@ class PeliculasFavoritas extends Component {
       peliculas: [], //Contiene los datos
     };
   }
+  sacarDeFavoritos = (id) => {
+    // Obtener el array de favoritos desde el localStorage
+    let favoritos = JSON.parse(localStorage.getItem('categoriaFavs'));
+    
+    // Eliminar la película de favoritos filtrando el id
+    let nuevosFavoritos = favoritos.filter(favId => favId !== id);
 
+    // Actualizar el localStorage con el nuevo array
+    localStorage.setItem('categoriaFavs', JSON.stringify(nuevosFavoritos));
+
+    // Actualizar el estado quitando la película de la lista
+    this.setState({
+      peliculas: this.state.peliculas.filter(pelicula => pelicula.id !== id),
+    });
+  }
   componentDidMount() {
     let storage = localStorage.getItem('categoriaFavs');//LocalStorage permite almacenar datos del usuario en el navegador aunque este cargue la pantalla
     console.log ("Data:", storage) //Para ver que nos trae storage
@@ -57,6 +71,9 @@ class PeliculasFavoritas extends Component {
               <p>Fecha de estreno: {pelicula.release_date}</p>
               <p>Duración: {pelicula.runtime} minutos</p>
               <p>Sinopsis: {pelicula.overview}</p>
+              <button onClick={() => this.sacarDeFavoritos(pelicula.id)}>
+                Sacar de favoritos
+              </button>
             </li>
           ))}
         </ul>

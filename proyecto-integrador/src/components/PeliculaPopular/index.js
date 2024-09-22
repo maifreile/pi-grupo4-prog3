@@ -40,25 +40,19 @@ class PeliculaPopular extends Component {
     const { esFavorito } = this.state;
     let favoritos = JSON.parse(localStorage.getItem("categoriaFavs")) || [];
 
-    if (esFavorito) {
-      // Si ya es favorito, lo quitamos de la lista
-      favoritos = favoritos.filter((id) => id !== this.props.data.id);
-      console.log(`Se quitó ${this.props.data.title} de favoritos`);
-    } else {
-      // Si no es favorito, lo agregamos
-      favoritos.push(this.props.data.id);
-      console.log(`Se agregó ${this.props.data.title} a favoritos`);
-    }
-
+    favoritos = esFavorito 
+    ? favoritos.filter((id) => id !== this.props.data.id)
+    : [...favoritos, this.props.data.id];
+    
     // Guardamos los favoritos actualizados en localStorage
     localStorage.setItem("categoriaFavs", JSON.stringify(favoritos));
 
-    // Actualizamos el estado
+   
     this.setState({ esFavorito: !esFavorito });
   }
 
   irADetalle() {
-    this.props.history.push(`/detalle/${this.props.data.id}`); // Asegúrate de usar el ID correcto
+    this.props.history.push(`/detalle/${this.props.data.id}`);
   }
 
   render() {
