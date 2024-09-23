@@ -28,7 +28,7 @@ class TodasPopulares extends Component {
                     peliculasFiltradas: data.results, 
                     cargando: false
                 })   
-            }, 2000); 
+            }, 1000); 
         })
 
         .catch ((error)=> {
@@ -71,7 +71,7 @@ class TodasPopulares extends Component {
             </div>
             {this.state.cargando 
               ? 
-              <div>
+              <div className="conteiner-cargando">
                 <i className="fa-solid fa-spinner fa-spin"></i>
                 <h1 className="cargando">Cargando...</h1>
               </div>

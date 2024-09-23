@@ -36,10 +36,24 @@ box-shadow: 0rem 0rem 10px 8px rgb(58 59 69 / 25%);
     margin: 2px 0;
 }
 
+.conteiner-cargando{
+    display: flex;
+    justify-content: center;  
+    align-items: center;      
+    flex-direction: column;   
+    height: 100vh;            
+    width: 100vw;            
+    position: fixed;          
+    top: 0;                  
+    left: 0;                  
+    background-color: rgb(255, 255, 255); 
+}
+
 .cargando{
     font-size: 18px;
     color: rgb(0, 0, 0);
     text-align: center;
+    margin-top: 10px;
    }
    
      i.fa-spinner {

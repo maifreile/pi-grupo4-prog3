@@ -23,7 +23,7 @@ class PeliculasCartelera extends Component {
             setTimeout(()=> this.setState({
                 peliculasEnCartelera: data.results,
                 cargando: false,
-              })  , 2000)
+              })  , 1000)
         })
 
         .catch ((error)=> {
@@ -41,7 +41,7 @@ class PeliculasCartelera extends Component {
        
             <div className='cardContainer'>
                 {this.state.cargando ? (
-                    <div>
+                    <div className="conteiner-cargando">
                         <i className="fa-solid fa-spinner fa-spin"></i>
                         <h1 className="cargando">Cargando...</h1>
                     </div>

@@ -6,7 +6,9 @@ class DetallePelicula extends Component {
   constructor(props) { //En el constructor, el props va a recibir los datos que se pasan
     super(props);
     this.state = {  //Con state, podemos cambiar los datos con el tiempo (Si se apreta el botn de favoritos)
+      pelicula: null,
       esFavorito: false, //Al principio la pelicula no est marcada como favorita
+      cargando: true
     };
   }
 
@@ -29,11 +31,19 @@ class DetallePelicula extends Component {
     //Va a buscar info de la pelicula con el id que tenemos
       .then((response) => response.json()) //Convierte en formato JSON
       .then((data) => {
-        this.setState({
-          pelicula: data, //Guarda los datos 
-        });
+        setTimeout(() => {
+          this.setState({
+            pelicula: data, 
+            cargando: false, // Se cambia el estado de cargando
+          });
+        }, 500);
       })
-      .catch((error) => console.log(error)); //por si hay un error
+      .catch((error) => {
+        console.log(error);
+        this.setState({
+          cargando: false
+        })
+      }); //por si hay un error
   }
 
   cambiarEsFavorito() { //Cambia si a peli es favorita o no
@@ -80,10 +90,16 @@ class DetallePelicula extends Component {
   }
 
   render() {
-    const { pelicula, esFavorito } = this.state;
+    const { pelicula, esFavorito, cargando } = this.state;
     
-    if (!pelicula) {
-      return <p>Cargando...</p>; // Mostramos un mensaje de carga mientras se obtienen los datos
+    // Verificamos si está cargando
+    if (cargando) {
+      return (
+        <div className="conteiner-cargando">
+          <i className="fa-solid fa-spinner fa-spin"></i>
+          <h1 className="cargando">Cargando...</h1>
+        </div>
+      );
     }
 
     return (
