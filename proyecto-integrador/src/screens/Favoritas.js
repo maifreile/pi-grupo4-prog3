@@ -57,8 +57,10 @@ class PeliculasFavoritas extends Component {
     }
 
     return (
-      <section>
+      
+      <section className="cardContainerFav">
         <h1>Películas Favoritas</h1>
+        <div className="pelicula-card-fav"> 
         <ul>
           {peliculas.map(pelicula => (  //map es un metodo que itera sobre el array e imprime el contenido
             <li key={pelicula.id}>
@@ -71,12 +73,13 @@ class PeliculasFavoritas extends Component {
               <p>Fecha de estreno: {pelicula.release_date}</p>
               <p>Duración: {pelicula.runtime} minutos</p>
               <p>Sinopsis: {pelicula.overview}</p>
-              <button onClick={() => this.sacarDeFavoritos(pelicula.id)}>
+              <button className="more" onClick={() => this.sacarDeFavoritos(pelicula.id)}>
                 Sacar de favoritos
               </button>
             </li>
           ))}
         </ul>
+        </div>
       </section>
     );
   }

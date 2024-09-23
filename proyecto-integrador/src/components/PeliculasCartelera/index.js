@@ -10,15 +10,12 @@ class PeliculasCartelera extends Component {
         this.state= {
             peliculasEnCartelera: [],
             cargando: true
-            
-        }
-        console.log('Soy el constructor');
-        
+        }    
     }
 
     componentDidMount(){
         fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${APIKEY}`)
-        //?api_key=${APIKEY}
+    
         .then((resp) => resp.json())
 
         .then((data) => {
@@ -35,16 +32,6 @@ class PeliculasCartelera extends Component {
                 cargando: false,
             });
         })
-        
-    }
-
-    componentDidUpdate(){
-        console.log('soy el didUpdate');
-        
-    }
-
-    componentWillUnmount(){
-        console.log('soy el willUnmount');
         
     }
 

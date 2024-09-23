@@ -12,8 +12,6 @@ class PeliculasPopulares extends Component {
             verTodoPopulares: false,
             cargando: true
         }
-        console.log('Soy el constructor');
-        
     }
 
     componentDidMount(){
@@ -41,16 +39,6 @@ class PeliculasPopulares extends Component {
       irADetalle() {
     this.props.history.push(`/detalle/${this.state.id}`);
   }
-
-    componentDidUpdate(){
-        console.log('soy el didUpdate');
-        
-    }
-
-    componentWillUnmount(){
-        console.log('soy el willUnmount');
-        
-    }
 
     render(){
         return(

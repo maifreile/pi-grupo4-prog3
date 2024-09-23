@@ -1,9 +1,10 @@
 .cardContainer {
     display: flex;
     flex-wrap: wrap; 
-    justify-content: space-around; 
+    justify-content:left; 
     flex-direction: row;
     width: 100%;
+    margin-left: 10px;
     
 }
 
@@ -50,6 +51,41 @@ i.fa-spinner {
    
 }
      
+.pelicula-card-det {
+    background-color: #dadbd9;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.tituloDetalle {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+
+  .imgDet {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+ 
+  .rating,
+  .release,
+  .duration,
+  .overview,
+  .genres {
+    font-size: 1.2em;
+    color: #555;
+    margin: 10px 0;
+  }
 
 .more{
     background-color: #655c64; 
@@ -83,6 +119,7 @@ i.fa-spinner {
 
 i.fas.fa-heart {
     color: #be1919; /* cambia el color del ícono a rosa */
+    
   }
 
 i.far.fa-heart {
@@ -95,3 +132,4 @@ i.far.fa-heart {
 .hide{
     display: none;
 }
+

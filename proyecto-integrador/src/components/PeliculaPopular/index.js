@@ -8,8 +8,8 @@ class PeliculaPopular extends Component {
       verDescripcion: false,
       esFavorito: false,
       textoDescripcion: "Ver descripción",
-      textoDetalle: "Ir a detalle",
-    };
+      textoDetalle: "Detalle",
+    }
   }
 
   componentDidMount() {
@@ -17,14 +17,6 @@ class PeliculaPopular extends Component {
     const favoritos = JSON.parse(localStorage.getItem("categoriaFavs")) || [];
     const esFavorito = favoritos.includes(this.props.data.id);
     this.setState({ esFavorito });
-  }
-
-  componentDidUpdate() {
-    console.log("soy el didUpdate");
-  }
-
-  componentWillUnmount() {
-    console.log("soy el willUnmount");
   }
 
   cambiarverDescripcion() {

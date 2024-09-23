@@ -13,21 +13,21 @@ class TodasCartelera extends Component {
       peliculas: [], 
       peliculasFiltradas: [], 
       cargando: true,
-      peliculasVisibles: 10,
-    };
-    console.log("Soy el constructor");
+      paginaACargar: 2
+    }
   }
 
   componentDidMount() {
     fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${APIKEY}`)
       .then((resp) => resp.json())
       .then((data) => {
+        console.log('data que recibi:', data);
+        
         setTimeout(() => {
           this.setState({
             peliculas: data.results, 
             peliculasFiltradas: data.results, 
             cargando: false,
-            verMas: false,
           });
         }, 2000);
       })
@@ -39,18 +39,18 @@ class TodasCartelera extends Component {
       });
   }
 
-  componentDidUpdate() {
-    console.log("soy el didUpdate");
-  }
-
-  componentWillUnmount() {
-    console.log("soy el willUnmount");
-  }
-
   cambiarCargarMas = () => {
-    this.setState((prevState) => ({
-      peliculasVisibles: prevState.peliculasVisibles + 5,
-    }));
+    fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${APIKEY}&page=${this.state.paginaACargar}`)
+    .then(resp => resp.json())
+    .then((data) => {
+      this.setState((prevState) => ({
+        peliculas: prevState.peliculas.concat(data.results), // Concatena las nuevas películas
+        peliculasFiltradas: prevState.peliculas.concat(data.results), // Actualiza también las filtradas
+        paginaACargar: prevState.paginaACargar + 1 // Incrementa la página para la siguiente carga
+      }));
+    })
+    .catch(err => console.log(err));
+    
   };
 
   filtrarPeliculas = (peli) => {
@@ -58,33 +58,33 @@ class TodasCartelera extends Component {
       elm.title.toLowerCase().includes(peli.toLowerCase())
     );
     this.setState({
-      peliculasFiltradas: pelisFiltradas, // Actualizas el estado de películas filtradas
+      peliculasFiltradas: pelisFiltradas, // Actualiza el estado de películas filtradas
     });
   };
 
   render() {
     return (
       <div className="cardContainer">
+        <div className="todas">
+        <h1 className="tituloTodas" >Peliculas en cartelera</h1>
         <Filtro filtrarPeliculas={(peli) => this.filtrarPeliculas(peli)} />
-        {this.state.cargando ? (
+        </div>
+        {this.state.cargando 
+          ? 
           <div>
             <i className="fa-solid fa-spinner fa-spin"></i>
             <h1 className="cargando">Cargando...</h1>
           </div>
-        ) : this.state.peliculasFiltradas.length > 0 ? (
+          : 
+          this.state.peliculasFiltradas.length > 0 
+          ? 
           <div className="cardContainer">
-            {this.state.peliculasFiltradas
-              .slice(0, this.state.peliculasVisibles)
-              .map((elm) => (
-                <PeliculaCartelera data={elm} />
-              ))}
-            {this.state.peliculasVisibles < this.state.peliculasFiltradas.length && (
-              <button onClick={this.cambiarCargarMas}>Cargar más</button>
-            )}
+            {this.state.peliculasFiltradas.map((elm) => (<PeliculaCartelera data={elm}/>))}
+           <button className="cargarMas" onClick={()=>this.cambiarCargarMas()}>Cargar más</button>
           </div>
-        ) : (
+         : 
           <h1>No se encontraron películas</h1>
-        )}
+        }
       </div>
     );
   }

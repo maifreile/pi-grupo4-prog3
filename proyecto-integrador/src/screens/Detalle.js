@@ -1,6 +1,7 @@
 import React, { Component } from "react"; //Con esto nos permite crear componenetes
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
+
 class DetallePelicula extends Component {
   constructor(props) { //En el constructor, el props va a recibir los datos que se pasan
     super(props);
@@ -86,21 +87,24 @@ class DetallePelicula extends Component {
     }
 
     return (
-      <section>
-        <h1>{pelicula.title}</h1>
-        <img
+      <section className="cardContainer">
+        <div className="pelicula-card-det">
+        <h1 className="tituloDetalle">{pelicula.title}</h1>
+        <img className="imgDet"
           src={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`}
           alt={pelicula.title}
         />
-        <p>Calificación: {pelicula.vote_average}</p>
-        <p>Fecha de estreno: {pelicula.release_date}</p>
-        <p>Duración: {pelicula.runtime} minutos</p>
-        <p>Sinopsis: {pelicula.overview}</p>
-        <p>Género: {pelicula.genres.map((genre) => genre.name).join(', ')}</p>
+        <p className="rating">Calificación: {pelicula.vote_average}</p>
+        <p className="release">Fecha de estreno: {pelicula.release_date}</p>
+        <p className="duration">Duración: {pelicula.runtime} minutos</p>
+        <p className="overview">Sinopsis: {pelicula.overview}</p>
+        <p className="genre">Género: {pelicula.genres.map((genre) => genre.name).join(', ')}</p>
   {/* Boton para agregar o quitar peliculas */}
-        <button onClick={() => this.cambiarEsFavorito()}> 
+        <button className="more" onClick={() => this.cambiarEsFavorito()}> 
           {esFavorito ? "Sacar de favoritos" : "Agregar a favoritos"}
         </button>
+        
+        </div>
       </section>
     );
   }

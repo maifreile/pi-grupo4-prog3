@@ -37,18 +37,6 @@ nav ul {
     align-items: center;
 }
 
-.main-nav li,
-.user li {
-    margin: 0 10px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: center;
-}
-
-.main-nav li:first-child {
-    font-weight: bold;
-}
 
 .user img {
     width: 30px;
@@ -68,19 +56,19 @@ main {
     padding: 0 30px;
 }
 
-/* Characters Container */
-.card-container {
+
+/* .card-container {
    
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-items: center;
+    justify-items: left;
     text-align: left;
     width: 100%;
     margin-top: 15px;
     margin-bottom: 15px;
     background-color: rgb(23, 23, 23);
-}
+} */
 
 /* footer */
 footer {
@@ -91,7 +79,41 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-} 
-/* .titulos{
-    font-family: "Nunito", sans-serif;
-} */
+}
+
+.box {
+    background-color: #fff;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  /* Título de la película */
+  .tituloDetalle {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Imagen del poster */
+  .imgDet {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilo de los textos */
+  .rating,
+  .release,
+  .duration,
+  .overview,
+  .genres {
+    font-size: 1.2em;
+    color: #555;
+    margin: 10px 0;
+  }

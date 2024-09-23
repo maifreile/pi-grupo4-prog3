@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom"; // Asegúrate de importar withRouter
+import { withRouter } from "react-router-dom"; 
 
 class PeliculaCartelera extends Component {
   constructor(props) {
@@ -8,8 +8,8 @@ class PeliculaCartelera extends Component {
       verDescripcion: false,
       esFavorito: false,
       textoDescripcion: "Ver descripción",
-      textoDetalle: "Ir a detalle",
-    };
+      textoDetalle: "Detalle",
+    }
   }
 
   componentDidMount() {
@@ -17,14 +17,6 @@ class PeliculaCartelera extends Component {
     const favoritos = JSON.parse(localStorage.getItem("categoriaFavs")) || [];
     const esFavorito = favoritos.includes(this.props.data.id);
     this.setState({ esFavorito });
-  }
-
-  componentDidUpdate() {
-    console.log("soy el didUpdate");
-  }
-
-  componentWillUnmount() {
-    console.log("soy el willUnmount");
   }
 
   cambiarverDescripcion() {

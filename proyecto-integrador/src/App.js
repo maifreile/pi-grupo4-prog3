@@ -5,8 +5,10 @@ import Header from './components/Header'
 import Home from './screens/Home'
 import Favoritas from './screens/Favoritas'
 import Detalle from './screens/Detalle'
+import Resultados from './screens/SearchResults'
 import TodasPopulares from './components/TodasPopulares'
 import TodasCartelera from './components/TodasCartelera'
+
 
 import NotFound from './screens/NotFound'
 
@@ -20,6 +22,7 @@ function App(props) {
       <Route path='/favoritos' component={Favoritas} />
       <Route path= '/populares'  component={TodasPopulares} />
       <Route path= '/cartelera'  component={TodasCartelera} />
+      <Route path='/searchResults' component={Resultados} />
 
       <Route path= '' component={NotFound} />
     </Switch>

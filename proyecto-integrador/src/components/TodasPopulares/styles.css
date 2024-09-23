@@ -1,39 +1,16 @@
-.cardContainer {
+
+.todas{
     display: flex;
-    flex-wrap: wrap; 
-    justify-content: space-around; 
-    flex-direction: row;
-    width: 100%;
+    flex-direction: column;
     
 }
 
-.pelicula-card {
-    margin-bottom: 20px;
-    color: #777;
-    font-size: 15px;
-    padding: 10px;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
-    display: flex;
-    flex-direction: column;
-    width: 18%;
+.tituloTodas{
+    padding-left: 10px;
+    margin-bottom: 0%;
 }
 
-.pelicula-card img{
-    width: 100%;
-    margin-bottom: 20px; 
-}
-.pelicula-card:hover,
-.active{
-box-shadow: 0rem 0rem 10px 8px rgb(58 59 69 / 25%);
-}
-.pelicula-card p {
-    margin: 3px 0;
-}
-.pelicula-card h2 {
-    margin: 2px 0;
-}
+
 
 .cargando{
     font-size: 18px;
@@ -94,3 +71,4 @@ i.far.fa-heart {
 .hide{
     display: none;
 }
+

@@ -1,15 +1,16 @@
 .formFiltro {
     display: flex;
-    justify-content: center;
+    /* justify-content: left; */
     margin: 20px 0;
+    
 }
 
 .inputFiltro {
     padding: 10px 20px;
     font-size: 16px;
-    border-radius: 20px;
-    border: 2px;
-    background-color: #4a4a6f; /* Fondo similar al color oscuro de Favoritos */
-    color:  #fff;
+    border: none;
+    background-color: #ebe4e4; 
+    margin-left: 10px;
 
   }
+  

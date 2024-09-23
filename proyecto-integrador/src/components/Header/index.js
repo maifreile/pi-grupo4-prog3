@@ -1,7 +1,6 @@
 import React from 'react';
 import './styles.css';
 import Opcion from '../OpcionHeader/index';
-// import logo from '../../../public/imgs/logo.jpg'
 
 const opciones= [ 
     {

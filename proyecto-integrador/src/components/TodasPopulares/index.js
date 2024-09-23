@@ -12,10 +12,8 @@ class TodasPopulares extends Component {
             peliculas: [],
             peliculasFiltradas: [],
             cargando: true,
-            peliculasVisibles:10
-        }
-        console.log('Soy el constructor');
-        
+            paginaACargar: 2
+        } 
     }
 
     componentDidMount(){
@@ -38,24 +36,21 @@ class TodasPopulares extends Component {
             this.setState({
                 cargando: false,
             });
-        })
-        
-    }
-
-    componentDidUpdate(){
-        console.log('soy el didUpdate');
-        
-    }
-
-    componentWillUnmount(){
-        console.log('soy el willUnmount');
-        
+        }) 
     }
 
     cambiarCargarMas = () => {
+      fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${APIKEY}&page=${this.state.paginaACargar}`)
+      .then(resp => resp.json())
+      .then((data) => {
         this.setState((prevState) => ({
-            peliculasVisibles: prevState.peliculasVisibles + 5
+          peliculas: prevState.peliculas.concat(data.results), // Concatena las nuevas películas
+          peliculasFiltradas: prevState.peliculas.concat(data.results), // Actualiza también las filtradas
+          paginaACargar: prevState.paginaACargar + 1 // Incrementa la página para la siguiente carga
         }));
+      })
+      .catch(err => console.log(err));
+      
     };
 
     filtrarPeliculas = (peli) => {
@@ -70,26 +65,26 @@ class TodasPopulares extends Component {
       render() {
         return (
           <div className="cardContainer">
+            <div className="todas">
+            <h1 className="tituloTodas">Peliculas populares</h1>
             <Filtro filtrarPeliculas={(peli) => this.filtrarPeliculas(peli)} />
-            {this.state.cargando ? (
+            </div>
+            {this.state.cargando 
+              ? 
               <div>
                 <i className="fa-solid fa-spinner fa-spin"></i>
                 <h1 className="cargando">Cargando...</h1>
               </div>
-            ) : this.state.peliculasFiltradas.length > 0 ? (
+             : 
+             this.state.peliculasFiltradas.length > 0 
+             ? 
               <div className="cardContainer">
-                {this.state.peliculasFiltradas
-                  .slice(0, this.state.peliculasVisibles)
-                  .map((elm) => (
-                    <PeliculaPopular data={elm} />
-                  ))}
-                {this.state.peliculasVisibles < this.state.peliculasFiltradas.length && (
-                  <button onClick={this.cambiarCargarMas}>Cargar más</button>
-                )}
+                {this.state.peliculasFiltradas.map((elm) => (<PeliculaPopular data={elm}/>))}
+                <button className="cargarMas" onClick={()=>this.cambiarCargarMas()}>Cargar más</button>
               </div>
-            ) : (
+             : 
               <h1>No se encontraron películas</h1>
-            )}
+            }
           </div>
         );
       }
