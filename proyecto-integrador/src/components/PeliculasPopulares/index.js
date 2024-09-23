@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-import PeliculaPopular from "../PeliculaPopular";
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import Pelicula from "../Pelicula";
 import './styles.css'
 const APIKEY = '72c246bb35885b3ab17e1a50707d1bf1'
 
@@ -51,7 +50,7 @@ class PeliculasPopulares extends Component {
                 ) : (
               this.state.peliculasMasPopulares.length > 0
                 ?
-                this.state.peliculasMasPopulares.slice(0,5).map((elm)=> <PeliculaPopular data={elm}/>)
+                this.state.peliculasMasPopulares.slice(0,5).map((elm)=> <Pelicula data={elm}/>)
                 :
                 <h1>Cargando...</h1>
             )}

@@ -1,7 +1,6 @@
 import React, {Component} from "react";
-import PeliculaPopular from "../PeliculaPopular";
+import Pelicula from "../Pelicula";
 import Filtro from "../Filtro";
-import '@fortawesome/fontawesome-free/css/all.min.css';
 import './styles.css'
 const APIKEY = '72c246bb35885b3ab17e1a50707d1bf1'
 
@@ -79,7 +78,7 @@ class TodasPopulares extends Component {
              this.state.peliculasFiltradas.length > 0 
              ? 
               <div className="cardContainer">
-                {this.state.peliculasFiltradas.map((elm) => (<PeliculaPopular data={elm}/>))}
+                {this.state.peliculasFiltradas.map((elm) => (<Pelicula data={elm}/>))}
                 <button className="cargarMas" onClick={()=>this.cambiarCargarMas()}>Cargar más</button>
               </div>
              : 

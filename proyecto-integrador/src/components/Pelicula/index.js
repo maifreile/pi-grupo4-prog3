@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom"; // Asegúrate de importar withRouter
 
-class PeliculaPopular extends Component {
+class Pelicula extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -80,4 +80,4 @@ class PeliculaPopular extends Component {
   }
 }
 
-export default withRouter(PeliculaPopular);
+export default withRouter(Pelicula);

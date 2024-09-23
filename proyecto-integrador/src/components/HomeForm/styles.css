@@ -29,3 +29,13 @@
   .botonBusqueda:hover {
     background-color: #371352;
   }
+
+  @media (max-width: 460px) {
+    .formBusqueda{
+      justify-content: center;
+
+    }  
+    .inputBusqueda{
+      margin-left: 0%;
+    } 
+  }

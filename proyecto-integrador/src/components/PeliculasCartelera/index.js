@@ -1,7 +1,6 @@
 import React, {Component} from "react";
-import PeliculaCartelera from '../PeliculaCartelera'
+import Pelicula from '../Pelicula';
 import './styles.css'
-import '@fortawesome/fontawesome-free/css/all.min.css';
 const APIKEY = '72c246bb35885b3ab17e1a50707d1bf1'
 
 class PeliculasCartelera extends Component {
@@ -48,7 +47,7 @@ class PeliculasCartelera extends Component {
                 ) : (
                    this.state.peliculasEnCartelera.length > 0
                     ?
-                    this.state.peliculasEnCartelera.slice(0,5).map((elm)=> <PeliculaCartelera data={elm}/>)
+                    this.state.peliculasEnCartelera.slice(0,5).map((elm)=> <Pelicula data={elm}/>)
                     :
                     <h1>Cargando...</h1>
                 )}

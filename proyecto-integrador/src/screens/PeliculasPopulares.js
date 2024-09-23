@@ -1,5 +1,5 @@
 import React from "react";
-import PeliculasPopulares from "../components/PeliculasPopulares";
+import Pelicula from "../components/Pelicula";
 
 
 function populares() {
@@ -8,7 +8,7 @@ function populares() {
         <React.Fragment>
         <h1>Peliculas populares</h1>
         <main>
-        <PeliculasPopulares/>
+        <Pelicula/>
         </main>
 
         

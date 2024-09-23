@@ -13,15 +13,16 @@ function Home(props) {
                 <HomeForm history={props.history}/>
                 
                 <h1 className="titulos">Populares</h1>
-                <section>
+                <section className="contenedor">
                     <PeliculasPopulares/>
-                    <Link to="/populares" > <button className="more" >Ver todas</button></Link> 
+                    <Link to="/populares"> <button className="verTodas" >Ver todas</button></Link> 
                 </section>
 
                 <h1 className="titulos">En cartelera</h1>
-                <section>
+                <section  className="contenedor">
+
                     <PeliculasCartelera/>
-                    <Link to="/cartelera" > <button className="more" >Ver todas</button></Link>
+                    <Link to="/cartelera"> <button className="verTodas" >Ver todas</button></Link>
                 </section>
 
             </main>

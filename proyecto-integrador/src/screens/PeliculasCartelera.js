@@ -1,5 +1,5 @@
 import React from "react";
-import PeliculasCartelera from "../components/PeliculasCartelera";
+import Pelicula from "../components/Pelicula";
 
 
 function cartelera() {
@@ -8,7 +8,7 @@ function cartelera() {
         <React.Fragment>
         <h1>Peliculas en cartelera</h1>
         <main>
-        <PeliculasCartelera/>
+        <Pelicula/>
         </main>
 
         

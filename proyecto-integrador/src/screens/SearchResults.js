@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PeliculaPopular from '../components/PeliculaCartelera'
+import Pelicula from '../components/Pelicula'
 const APIKEY = '72c246bb35885b3ab17e1a50707d1bf1'
 
 
@@ -43,7 +43,7 @@ export default class Resultados extends Component {
                 <h1 className="cargando">Cargando...</h1>
               </div>
             ) : this.state.resultados.length > 0 ? (
-              this.state.resultados.map((elm) => <PeliculaPopular key={elm.id} data={elm} />)
+              this.state.resultados.map((elm) => <Pelicula key={elm.id} data={elm} />)
             ) : (
               <h1>No hay resultados</h1>
             )}

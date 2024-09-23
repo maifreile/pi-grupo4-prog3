@@ -1,7 +1,6 @@
 .todas{
     display: flex;
     flex-direction: column;
-    
 }
 
 .tituloTodas{
@@ -61,7 +60,7 @@
 }
 
 .cargarMas{
-
+       
         background-color: #655c64; 
         color: #ffffff; 
         border: none;

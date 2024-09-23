@@ -82,8 +82,7 @@ i.fa-spinner {
     margin-bottom: 20px;
   }
   
-
-  .imgDet {
+.imgDet {
     width: 300px;
     height: auto;
     border-radius: 10px;
@@ -113,6 +112,23 @@ i.fa-spinner {
     transition: background-color 0.3s ;
 }
 
+.verTodas{
+    background-color: #655c64; 
+    color: #ffffff; 
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ;
+    margin:20% 0;
+}
+
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .detail{
     background-color: #897c87; 
     color: #ffffff; 
@@ -136,7 +152,6 @@ i.fas.fa-heart {
     color: #be1919; 
     display: flex;
     justify-content: flex-end;
-    margin-right: 120px;
     margin-top: -20px; 
     
   }
@@ -145,8 +160,7 @@ i.far.fa-heart {
     color: #3a3538; /* cambia el color del ícono a rosa */
     display: flex;
     justify-content: flex-end;
-    margin-right: 120px;
-    margin-top: -20px; 
+    margin-top: -7%; 
   }
 
 .show{
@@ -156,3 +170,16 @@ i.far.fa-heart {
     display: none;
 }
 
+@media (max-width: 460px) {
+  
+    .cardContainer {
+      flex-direction: column;
+      align-items: center;
+      margin-left: 0;
+    }
+
+    .pelicula-card {
+        width: 85%;
+      }
+
+  }

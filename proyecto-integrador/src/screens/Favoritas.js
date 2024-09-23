@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-//Importamos las peliculas
-
-//Ponemos la API
 const apiKey = '72c246bb35885b3ab17e1a50707d1bf1';
 
 //Pongo estado para Almacenar datos que puedan cambiar (como la lista de películas).
@@ -58,9 +55,9 @@ class PeliculasFavoritas extends Component {
 
     return (
       
-      <section className="cardContainerFav">
+      <section className="cardContainer">
         <h1>Películas Favoritas</h1>
-        <div className="pelicula-card-fav"> 
+        <div className="pelicula-card"> 
         <ul>
           {peliculas.map(pelicula => (  //map es un metodo que itera sobre el array e imprime el contenido
             <li key={pelicula.id}>

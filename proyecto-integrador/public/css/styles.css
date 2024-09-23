@@ -44,11 +44,6 @@ nav ul {
     margin-left: 10px;
 }
 
-h1,h2 {
-    font-weight: 200;
-    font-family: Nunito;
-    
-}
 
 h1,
 main {
@@ -56,19 +51,6 @@ main {
     padding: 0 30px;
 }
 
-
-/* .card-container {
-   
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-items: left;
-    text-align: left;
-    width: 100%;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    background-color: rgb(23, 23, 23);
-} */
 
 /* footer */
 footer {
