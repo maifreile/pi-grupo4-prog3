@@ -1,21 +1,20 @@
-import React, { Component } from "react"; // Con esto nos permite crear componenetes
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import React, { Component } from "react";
 
 class Detalle extends Component {
   constructor(props) {
     super(props);
     this.state = {
       esFavorito: false,
-      pelicula: null,
+      pelicula: "", 
       cargando: true,
     };
   }
 
   componentDidMount() {
-    const { id } = this.props.match.params; // Trae el id desde los parámetros de la URL
+    const { id } = this.props.match.params;
     const apikey = '72c246bb35885b3ab17e1a50707d1bf1';
-    
-    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}&language=es-ES`)
+  
+    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}`)
       .then((response) => response.json())
       .then((data) => {
         this.setState({
@@ -24,11 +23,11 @@ class Detalle extends Component {
         });
       })
       .catch((error) => console.log(error));
-
+  
     let storage = localStorage.getItem('categoriaFavs');
     if (storage !== null) {
       let arrayParseado = JSON.parse(storage);
-      let estaEnArray = arrayParseado.includes(id);
+      let estaEnArray = arrayParseado.includes(parseInt(id));  // Convertir id a número
       if (estaEnArray) {
         this.setState({
           esFavorito: true,
@@ -36,29 +35,29 @@ class Detalle extends Component {
       }
     }
   }
-
+  
   agregarAFavoritos(id) {
     let storage = localStorage.getItem('categoriaFavs');
     if (storage !== null) {
       let storageParseado = JSON.parse(storage);
-      if (!storageParseado.includes(id)) {
-        storageParseado.push(id);
+      if (!storageParseado.includes(parseInt(id))) {  // Convierte id a número
+        storageParseado.push(parseInt(id)); 
         localStorage.setItem('categoriaFavs', JSON.stringify(storageParseado));
       }
     } else {
-      let arrayFavs = [id];
+      let arrayFavs = [parseInt(id)];  //  el id sea un número
       localStorage.setItem('categoriaFavs', JSON.stringify(arrayFavs));
     }
     this.setState({
       esFavorito: true,
     });
   }
-
+  
   eliminarDeFavoritos(id) {
     let storage = localStorage.getItem('categoriaFavs');
     if (storage !== null) {
       let storageParseado = JSON.parse(storage);
-      let nuevoArray = storageParseado.filter(favId => favId !== id);
+      let nuevoArray = storageParseado.filter(favId => favId !== parseInt(id));  // Convierte id a número
       localStorage.setItem('categoriaFavs', JSON.stringify(nuevoArray));
     }
     this.setState({
@@ -68,7 +67,8 @@ class Detalle extends Component {
 
   render() {
     const { pelicula, esFavorito, cargando } = this.state;
-    const { id } = this.props.match.params; // Extraer el ID aquí
+    const { id } = this.props.match.params;
+    console.log(pelicula, esFavorito)
 
     return (
       cargando ? (
@@ -83,7 +83,7 @@ class Detalle extends Component {
           <h1 className="tituloDetalle">{pelicula.title}</h1>
           <img className="imgDet"
             src={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`}
-            alt={pelicula.title}
+            alt=" "
           />
           <p className="rating">Calificación: {pelicula.vote_average}</p>
           <p className="release">Fecha de estreno: {pelicula.release_date}</p>
