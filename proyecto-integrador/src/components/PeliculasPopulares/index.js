@@ -44,7 +44,6 @@ class PeliculasPopulares extends Component {
             <div className='cardContainer'>
                 {this.state.cargando ? (
                     <div className="conteiner-cargando">
-                        <i className="fa-solid fa-spinner fa-spin"></i>
                         <h1 className="cargando">Cargando...</h1>
                     </div>
                 ) : (

@@ -9,6 +9,7 @@ class PeliculasFavoritas extends Component {
     this.state = {
       peliculas: [],
       verDescripcion: false,
+      cargando: true,
       textoDescripcion: "Ver descripción",
     };
   }
@@ -28,13 +29,25 @@ class PeliculasFavoritas extends Component {
 
         Promise.all(promises)
           .then(resultados => {
-            const peliculasValidas = resultados.filter(data => data && data.id);
-            this.setState({
-              peliculas: peliculasValidas
-            });
+            setTimeout(() => {
+              const peliculasValidas = resultados.filter(data => data && data.id);
+              this.setState({
+                peliculas: peliculasValidas,
+                cargando: false, // La carga ha terminado
+              });
+            }, 1000);
           })
-          .catch(error => console.log(error));
+          .catch((error) => {
+            console.log(error);
+            this.setState({
+              cargando: false, // La carga ha terminado incluso si hubo un error
+            });
+          });
+      } else {
+        this.setState({ cargando: false });
       }
+    } else {
+      this.setState({ cargando: false });
     }
   }
 
@@ -55,16 +68,24 @@ class PeliculasFavoritas extends Component {
   }
 
   render() {
-    const { peliculas, verDescripcion, textoDescripcion } = this.state;
+    const { peliculas, cargando, verDescripcion, textoDescripcion } = this.state;
 
     return (
-      <section className="contenedor">
-        <h1>Películas Favoritas</h1>
-        {peliculas.length === 0 ? (
-          <p>No hay películas favoritas.</p>
-        ) : (
+      <div className="cardContainer">
+        <div className="todas">
+          <h1 className="tituloTodas">Películas Favoritas</h1>
+        </div>
+
+        {cargando 
+          ? 
+          <div className="conteiner-cargando">
+            <h1 className="cargando">Cargando...</h1>
+          </div>
+          : 
+          peliculas.length > 0 
+          ? 
           <div className="cardContainer">
-            {peliculas.map(pelicula => (
+            {peliculas.map((pelicula) => (
               <div className="pelicula-card" key={pelicula.id}>
                 <Link to={`/detalle/${pelicula.id}`}>
                   <img
@@ -74,7 +95,7 @@ class PeliculasFavoritas extends Component {
                   />
                 </Link>
                 <h2>{pelicula.title}</h2>
-                
+
                 <div className="botones-favoritos">
                   {verDescripcion && <p>{pelicula.overview}</p>}
                   <div className="botones">
@@ -94,8 +115,10 @@ class PeliculasFavoritas extends Component {
               </div>
             ))}
           </div>
-        )}
-      </section>
+          : 
+          <h1>No se encontraron películas favoritas</h1>
+        }
+      </div>
     );
   }
 }

@@ -73,7 +73,6 @@ class Detalle extends Component {
     return (
       cargando ? (
         <div className="conteiner-cargando">
-          <i className="fa-solid fa-spinner fa-spin"></i>
           <h1 className="cargando">Cargando...</h1>
         </div>
       ) : !pelicula ? (
