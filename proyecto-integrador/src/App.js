@@ -18,7 +18,7 @@ function App(props) {
     <Header/>
     <Switch>
       <Route path= '/' exact={true} component={Home} />
-      <Route path= '/detalle/:id' exact={true} component={Detalle} /> Que me lleve al detalle de la pelicula
+      <Route path= '/detalle/:id' exact={true} component={Detalle} /> 
       <Route path='/favoritos' component={Favoritas} />
       <Route path= '/populares'  component={TodasPopulares} />
       <Route path= '/cartelera'  component={TodasCartelera} />

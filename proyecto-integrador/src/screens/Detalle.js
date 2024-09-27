@@ -89,12 +89,17 @@ class Detalle extends Component {
           <p className="release">Fecha de estreno: {pelicula.release_date}</p>
           <p className="duration">Duración: {pelicula.runtime} minutos</p>
           <p className="overview">Sinopsis: {pelicula.overview}</p>
-          <p className="genre">Géneros: {pelicula.genres.map((genre) => genre.name).join(', ')}</p>
-
-          <i
-            className={esFavorito ? "fas fa-heart" : "far fa-heart"}
-            onClick={() => esFavorito ? this.eliminarDeFavoritos(id) : this.agregarAFavoritos(id)}
-          />
+          
+          <div className="contenedor-genero-favorito">
+          <div className="genre">
+            <p>Géneros: {pelicula.genres.map((genre) => genre.name).join(', ')}</p>
+          </div>
+                  
+          <div className="favorito-container">
+            <i className={`heart-detalle ${esFavorito ? "fas fa-heart" : "far fa-heart"}`}
+            onClick={() => esFavorito ? this.eliminarDeFavoritos(id) : this.agregarAFavoritos(id)} />
+          </div>
+        </div>
         </div>
       )
     );
