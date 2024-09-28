@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.css'
 
 function Footer() {
-    return(
+    return (
         <footer>
             <p> Agustina Benavent, Sofia Figueroa, Mailén Freile </p>
         </footer>

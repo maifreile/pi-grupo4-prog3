@@ -8,6 +8,17 @@
     margin-bottom: 0%;
 }
 
+.cargarMas {
+    background-color: #655c64; 
+    color: #ffffff; 
+    border: none;
+    padding: 5px 10px;
+    margin-bottom: 1%;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
 .conteiner-cargando{
     display: flex;
     justify-content: center;  
@@ -28,67 +39,56 @@
     margin-top: 10px;
    }
    
-     i.fa-spinner {
-       color: rgb(0, 0, 0); 
-       font-size: 1.5rem; 
-       flex-direction: row;
-       display: flex;
-       justify-content: center;
-   
-     }
-.more{
+.more, .detail {
     background-color: #655c64; 
     color: #ffffff; 
     border: none;
-    padding: 5px 10px;
-    font-size: 10px;
+    padding: 5px 5px;
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s ;
+    transition: background-color 0.3s;
 }
 
-.detail{
-    background-color: #897c87; 
-    color: #ffffff; 
-    margin-left: 10px;
-    border: none;
-    padding: 5px 10px;
-    font-size: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ;
-}
-
-.cargarMas{
-       
-        background-color: #655c64; 
-        color: #ffffff; 
-        border: none;
-        padding: 5px 10px;
-        font-size: 10px;
-        cursor: pointer;
-        border-radius: 5px;
-        transition: background-color 0.3s ;
-}
-
-.more:hover,
-.detail:hover {
-   
+.more:hover, .detail:hover {
     background-color: #371352;
     cursor: pointer;
 }
 
 i.fas.fa-heart {
-    color: #be1919; /* cambia el color del ícono a rosa */
+    color: #be1919; 
   }
 
 i.far.fa-heart {
-    color: #3a3538; /* cambia el color del ícono a rosa */
+    color: #3a3538;
   }
 
-.show{
-    display: block;
+/* DETALLE */
+.favorito-container{
+    display: flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    align-items: center;
+
 }
-.hide{
-    display: none;
+i.heart-detalle.fas {
+    margin-top: 1%;
+    color: #be1919; 
+}
+
+i.heart-detalle.far {
+    margin-top: 1%;
+    color: #3a3538; 
+}
+
+/* FAVORITOS */
+.noResults{
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.noFav{
+    font-size: large;
+    font-style: italic;
+    padding: 0%;
 }

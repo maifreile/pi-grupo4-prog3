@@ -9,8 +9,8 @@ class TodasCartelera extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      peliculas: [], 
-      peliculasFiltradas: [], 
+      peliculas: [],
+      peliculasFiltradas: [],
       cargando: true,
       paginaACargar: 2
     }
@@ -21,11 +21,11 @@ class TodasCartelera extends Component {
       .then((resp) => resp.json())
       .then((data) => {
         console.log('data que recibi:', data);
-        
+
         setTimeout(() => {
           this.setState({
-            peliculas: data.results, 
-            peliculasFiltradas: data.results, 
+            peliculas: data.results,
+            peliculasFiltradas: data.results,
             cargando: false,
           });
         }, 1000);
@@ -40,16 +40,16 @@ class TodasCartelera extends Component {
 
   cambiarCargarMas = () => {
     fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${APIKEY}&page=${this.state.paginaACargar}`)
-    .then(resp => resp.json())
-    .then((data) => {
-      this.setState((prevState) => ({
-        peliculas: prevState.peliculas.concat(data.results), // Concatena las nuevas películas
-        peliculasFiltradas: prevState.peliculas.concat(data.results), // Actualiza también las filtradas
-        paginaACargar: prevState.paginaACargar + 1 // Incrementa la página para la siguiente carga
-      }));
-    })
-    .catch(err => console.log(err));
-    
+      .then(resp => resp.json())
+      .then((data) => {
+        this.setState((prevState) => ({
+          peliculas: prevState.peliculas.concat(data.results), // Concatena las nuevas películas
+          peliculasFiltradas: prevState.peliculas.concat(data.results), // Actualiza también las filtradas
+          paginaACargar: prevState.paginaACargar + 1 // Incrementa la página para la siguiente carga
+        }));
+      })
+      .catch(err => console.log(err));
+
   };
 
   filtrarPeliculas = (peli) => {
@@ -65,23 +65,25 @@ class TodasCartelera extends Component {
     return (
       <div className="cardContainer">
         <div className="todas">
-        <h1 className="tituloTodas" >Peliculas en cartelera</h1>
-        <Filtro filtrarPeliculas={(peli) => this.filtrarPeliculas(peli)} />
+          <h1 className="tituloTodas" >Peliculas en cartelera</h1>
+          <Filtro filtrarPeliculas={(peli) => this.filtrarPeliculas(peli)} />
         </div>
-        {this.state.cargando 
-          ? 
+        {this.state.cargando
+          ?
           <div className="conteiner-cargando">
             <h1 className="cargando">Cargando...</h1>
           </div>
-          : 
-          this.state.peliculasFiltradas.length > 0 
-          ? 
-          <div className="cardContainer">
-            {this.state.peliculasFiltradas.map((elm) => (<Pelicula data={elm}/>))}
-           <button className="cargarMas" onClick={()=>this.cambiarCargarMas()}>Cargar más</button>
-          </div>
-         : 
-          <h1>No se encontraron películas</h1>
+          :
+          this.state.peliculasFiltradas.length > 0
+            ?
+            <div className="cardContainer">
+              {this.state.peliculasFiltradas.map((elm) => (<Pelicula data={elm} />))}
+              <button className="cargarMas" onClick={() => this.cambiarCargarMas()}>Cargar más</button>
+            </div>
+            :
+            <div className="noResults">
+              <h1 className="noFav">No hay resultados para tu busqueda</h1>
+            </div>
         }
       </div>
     );

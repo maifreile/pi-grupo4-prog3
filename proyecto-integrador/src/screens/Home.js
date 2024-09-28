@@ -6,22 +6,22 @@ import HomeForm from "../components/HomeForm";
 
 
 function Home(props) {
-    return(
+    return (
         <React.Fragment>
             <main>
-                
-                <HomeForm history={props.history}/>
-                
-                <h1 className="titulos">Populares</h1>
+
+                <HomeForm history={props.history} />
+
+                <h1 className="tituloTodas">Populares</h1>
                 <section className="contenedor">
-                    <PeliculasPopulares/>
-                    <Link to="/populares"> <button className="verTodas" >Ver todas</button></Link> 
+                    <PeliculasPopulares />
+                    <Link to="/populares"> <button className="verTodas" >Ver todas</button></Link>
                 </section>
 
-                <h1 className="titulos">En cartelera</h1>
-                <section  className="contenedor">
+                <h1 className="tituloTodas">En cartelera</h1>
+                <section className="contenedor">
 
-                    <PeliculasCartelera/>
+                    <PeliculasCartelera />
                     <Link to="/cartelera"> <button className="verTodas" >Ver todas</button></Link>
                 </section>
 

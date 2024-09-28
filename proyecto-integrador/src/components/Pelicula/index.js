@@ -14,16 +14,16 @@ class Pelicula extends Component {
 
   componentDidMount() {
     // Verificamos si esta película ya está en favoritos cuando el componente carga
-    
+
     let storage = localStorage.getItem('categoriaFavs');
-    if(storage !== null) {
-        let arrayParseado = JSON.parse(storage);
-        let estaEnArray = arrayParseado.includes(this.props.data.id);
-        if(estaEnArray) {
-            this.setState({
-                esFavorito: true
-            });
-        } 
+    if (storage !== null) {
+      let arrayParseado = JSON.parse(storage);
+      let estaEnArray = arrayParseado.includes(this.props.data.id);
+      if (estaEnArray) {
+        this.setState({
+          esFavorito: true
+        });
+      }
     }
   }
 

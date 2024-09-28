@@ -39,98 +39,6 @@
     margin-top: 10px;
 }
 
-i.fa-spinner {
-    color: rgb(0, 0, 0); 
-    font-size: 1.5rem; 
-    flex-direction: row;
-    display: flex;
-    justify-content: center;
-}
-
-.more {
-    background-color: #655c64; 
-    color: #ffffff; 
-    border: none;
-    padding: 5px 10px;
-    font-size: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.detail {
-    background-color: #897c87; 
-    color: #ffffff; 
-    margin-left: 10px;
-    border: none;
-    padding: 5px 10px;
-    font-size: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.more:hover,
-.detail:hover {
-    background-color: #371352;
-    cursor: pointer;
-}
-
-i.fas.fa-heart {
-    color: #be1919; 
-}
-
-i.far.fa-heart {
-    color: #3a3538;
-}
-
-.heart-detalle {
-    font-size: 2rem; 
-    color: #be1919; 
-}
-
-.heart-detalle.far {
-    color: #3a3538; 
-}
-
-.contenedor-genero-favorito {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center;  
-    width: 100%; 
-    padding: 10px 0; 
-}
-
-.genre {
-    flex: 1;  
-    text-align: left;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 1.2em;
-    color: #555;
-    text-align: center;
-}
-
-.favorito-container {
-    flex: 0;  
-    text-align: right;
-    margin-right: 80px;
-    margin-top: 10px;
-}
-
-.show {
-    display: block;
-}
-
-.hide {
-    display: none;
-}
-
-.botones-favoritos {
-    display: flex;
-    gap: 10px; 
-}
-
-
 .more, .detail {
     background-color: #655c64; 
     color: #ffffff; 
@@ -144,4 +52,43 @@ i.far.fa-heart {
 .more:hover, .detail:hover {
     background-color: #371352;
     cursor: pointer;
+}
+
+i.fas.fa-heart {
+    color: #be1919; 
+}
+
+i.far.fa-heart {
+    color: #3a3538;
+}
+
+/* DETALLE */
+.favorito-container{
+    display: flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    align-items: center;
+
+}
+i.heart-detalle.fas {
+    margin-top: 1%;
+    color: #be1919; 
+}
+
+i.heart-detalle.far {
+    margin-top: 1%;
+    color: #3a3538; 
+}
+
+/* FAVORITOS */
+.noResults{
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.noFav{
+    font-size: large;
+    font-style: italic;
+    padding: 0%;
 }

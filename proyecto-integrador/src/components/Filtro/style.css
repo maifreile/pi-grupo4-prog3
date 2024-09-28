@@ -1,8 +1,6 @@
 .formFiltro {
     display: flex;
-    /* justify-content: left; */
     margin: 20px 0;
-    
 }
 
 .inputFiltro {
@@ -11,6 +9,5 @@
     border: none;
     background-color: #ebe4e4; 
     margin-left: 10px;
-
   }
   

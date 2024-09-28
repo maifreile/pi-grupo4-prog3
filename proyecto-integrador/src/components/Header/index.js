@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.css';
 import Opcion from '../OpcionHeader/index';
 
-const opciones= [ 
+const opciones = [
     {
         nombre: 'Home',
         ruta: '/'
@@ -23,16 +23,18 @@ const opciones= [
 ]
 
 function Header() {
-    return(
+    return (
+
         <nav>
-        <img src='/imgs/logo.jpg' alt='' className='logo'/>
-        <ul className="main-nav">
-            {
-            opciones.map((elm) => <Opcion data= {elm} /> )
-            }
-        </ul>
-        
-    </nav>
+            <img src='/imgs/logo.jpg' alt='' className='logo' />
+            <ul className="main-nav">
+                {
+                    opciones.map((elm) => <Opcion data={elm} />)
+                }
+            </ul>
+
+        </nav>
+
     )
 }
 

@@ -19,9 +19,9 @@ class PeliculasFavoritas extends Component {
 
     if (storage !== null) {
       let favoritos = JSON.parse(storage);
-      
+
       if (favoritos.length > 0) {
-        const promises = favoritos.map(id => 
+        const promises = favoritos.map(id =>
           fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
             .then(resp => resp.json())
             .catch(error => console.log(error))
@@ -33,14 +33,14 @@ class PeliculasFavoritas extends Component {
               const peliculasValidas = resultados.filter(data => data && data.id);
               this.setState({
                 peliculas: peliculasValidas,
-                cargando: false, // La carga ha terminado
+                cargando: false, // La carga termino
               });
             }, 1000);
           })
           .catch((error) => {
             console.log(error);
             this.setState({
-              cargando: false, // La carga ha terminado incluso si hubo un error
+              cargando: false, // La carga termino incluso si hubo un error
             });
           });
       } else {
@@ -76,29 +76,29 @@ class PeliculasFavoritas extends Component {
           <h1 className="tituloTodas">Películas Favoritas</h1>
         </div>
 
-        {cargando 
-          ? 
+        {cargando
+          ?
           <div className="conteiner-cargando">
             <h1 className="cargando">Cargando...</h1>
           </div>
-          : 
-          peliculas.length > 0 
-          ? 
-          <div className="cardContainer">
-            {peliculas.map((pelicula) => (
-              <div className="pelicula-card" key={pelicula.id}>
-                <Link to={`/detalle/${pelicula.id}`}>
-                  <img
-                    className="imagen-pelicula"
-                    src={`https://image.tmdb.org/t/p/w342/${pelicula.poster_path}`}
-                    alt={pelicula.title}
-                  />
-                </Link>
-                <h2>{pelicula.title}</h2>
+          :
+          peliculas.length > 0
+            ?
+            <div className="cardContainer">
+              {peliculas.map((pelicula) => (
+                <div className="pelicula-card" key={pelicula.id}>
+                  <Link to={`/detalle/${pelicula.id}`}>
+                    <img
+                      className="imagen-pelicula"
+                      src={`https://image.tmdb.org/t/p/w342/${pelicula.poster_path}`}
+                      alt={pelicula.title}
+                    />
+                  </Link>
+                  <h2>{pelicula.title}</h2>
 
-                <div className="botones-favoritos">
-                  {verDescripcion && <p>{pelicula.overview}</p>}
+
                   <div className="botones">
+                    {verDescripcion && <p>{pelicula.overview}</p>}
                     <button className="more" onClick={() => this.cambiarverDescripcion()}>
                       {textoDescripcion}
                     </button>
@@ -107,16 +107,18 @@ class PeliculasFavoritas extends Component {
                       <button className="detail">Ver Detalle</button>
                     </Link>
 
-                    <button className="more" onClick={() => this.sacarDeFavoritos(pelicula.id)}>
-                      Sacar de favoritos
+                    <button className="eliminarFav" onClick={() => this.sacarDeFavoritos(pelicula.id)}>
+                      Eliminar
                     </button>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-          : 
-          <h1>No se encontraron películas favoritas</h1>
+              ))}
+            </div>
+            :
+            <div className="noResults">
+              <h1 className="noFav">No tienes películas favoritas aún.</h1>
+            </div>
+
         }
       </div>
     );

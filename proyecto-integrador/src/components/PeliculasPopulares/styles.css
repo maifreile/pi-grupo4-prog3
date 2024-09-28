@@ -4,8 +4,6 @@
     justify-content:left; 
     flex-direction: row;
     width: 100%;
-    margin-left: 10px;
-    
 }
 
 .pelicula-card {
@@ -16,8 +14,6 @@
     background: #fff;
     border-radius: 5px;
     box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
-    display: flex;
-    flex-direction: column;
     width: 18%;
     margin: 3px;
 }
@@ -56,24 +52,17 @@ box-shadow: 0rem 0rem 10px 8px rgb(58 59 69 / 25%);
     text-align: center;
     margin-top: 10px;
    }
-   
-i.fa-spinner {
-    color: rgb(0, 0, 0); 
-    font-size: 1.5rem; 
-    flex-direction: row;
-    display: flex;
-    justify-content: center;
-   
-}
      
 .pelicula-card-det {
-    background-color: #dadbd9;
+  background-color: #dadbd9;
   max-width: 800px;
   margin: 20px auto;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  text-align: center;
+  text-align:center;
+  
+
 }
 
 .tituloDetalle {
@@ -95,11 +84,23 @@ i.fa-spinner {
   .release,
   .duration,
   .overview,
-  .genres {
+  .genre {
     font-size: 1.2em;
     color: #555;
     margin: 10px 0;
   }
+
+.eliminarFav{
+    background-color: #655c64; 
+    color: #ffffff; 
+    border: none;
+    padding: 5px 10px;
+    margin-left: 10px;
+    font-size: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ;
+}
 
 .more{
     background-color: #655c64; 
@@ -142,8 +143,8 @@ i.fa-spinner {
 }
 
 .more:hover,
-.detail:hover {
-   
+.detail:hover,
+.eliminarFav:hover {
     background-color: #371352;
     cursor: pointer;
 }
@@ -157,7 +158,7 @@ i.fas.fa-heart {
   }
 
 i.far.fa-heart {
-    color: #3a3538; /* cambia el color del ícono a rosa */
+    color: #3a3538; 
     display: flex;
     justify-content: flex-end;
     margin-top: -7%; 
@@ -170,6 +171,7 @@ i.far.fa-heart {
     display: none;
 }
 
+/* RESPONSIVE */
 @media (max-width: 460px) {
   
     .cardContainer {
@@ -183,3 +185,26 @@ i.far.fa-heart {
       }
 
   }
+  @media (max-width: 1200px) {
+    .pelicula-card {
+        width: 22%;
+    }
+  }
+
+@media (max-width: 992px) {
+    .pelicula-card {
+        width: 30%;
+    }
+}
+
+@media (max-width: 768px) {
+    .pelicula-card {
+        width: 45%;
+    }
+}
+
+@media (max-width: 576px) {
+    .pelicula-card {
+        width: 90%;
+    }
+}

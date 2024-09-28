@@ -50,24 +50,51 @@ a{
 
 }
 
+
+/* RESPONSIVE */
+
 @media (max-width: 460px) {
+   
     .logo{
         width: 25%;
         height: auto;
         object-fit: contain;
     }
-
+    nav{
+        max-width: 100%;
+    }
     nav ul{
-        display: flex;
         flex-direction: column;
         align-items: flex-start;
         font-size: smaller;
     }
 
-    .main-nav li, .user li{
+    .main-nav li {
        padding: 5%; 
        
     }
 }
 
+@media (max-width: 992px) {
+    .logo{
+        width: 15%;
+        height: auto;
+        object-fit: contain;
+    }
+    nav {
+        max-width: 100%;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: smaller;
+  
+    }
+    .main-nav li {
+        padding: 5%; 
+        
+     }
+
+}
 
